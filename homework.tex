@@ -119,10 +119,32 @@ It is well-defined regular morphism since $(x_0^2)(x_1^2) - (x_0 x_1)^2=0$ and w
 (y_1: y_2)& \text{if } y_2 \neq 0\\
 \end{cases} 
 \]
-It is well-defined regular morphism since if $y_0$ and $y_2$ are neither equal to $0$ then $(y_0: y_1) = (\frac{y_0}{y_1}:1) = (\frac{y_1}{y_2}:1) = (y_1:y_2)$. And we have $\varphi \circ \varphi^{-1} = id_{S}, \varphi^{-1} \circ \varphi = id_{\mathbb{P}^1_k}$.
+It is well-defined regular morphism since if $y_0$ and $y_2$ are neither equal to $0$ then $(y_0: y_1) = (\frac{y_0}{y_1}:1) = (\frac{y_1}{y_2}:1) = (y_1:y_2)$. And we have $\varphi \circ \varphi^{-1} = id_{S}, \varphi^{-1} \circ \varphi = id_{\mathbb{P}^1_k}$. \qeds
 \begin{exer}
 	Let $Y$ be an affine variety in $\mathbb{A}^n_k$. Show that $K(Y) \cong K(\mathcal{O}_{Y,p})$ for all $p \in Y$.
 \end{exer}
+Since $Y$ is affine variety, we have $\mathcal{O}_{Y,p} \cong A(Y)_{m_p}$ for all point $p \in Y$. Therefore, $K(\mathcal{O}_{Y,p})$ is fraction field of local ring $A(Y)_{m_p}$. Moreover, $K(Y)$ is fraction field of coordinate ring $A(Y)$. Hence we have following commutative localization diagram
+\[
+\begin{tikzcd}
+A(Y) \ar[r,"l_{m_p}"] \ar[d,"l"] & A(Y)_{m_p} \ar[d,"l'"]\\
+K(A(Y)) & K(A(Y)_{m_p})\\
+\end{tikzcd}
+\]
+$l_{m_p}$ maps non-zero divisor of $A(Y)$ to non-zero divisor, so $l' \circ l_{m_p}$ maps non-zero divisors to units. Therefore, with universal property of localization, there is unique homomorphism $g \colon K(A(Y)) \to K(A(Y)_{m_p})$ making this diagram commute. Also, with universal property of $l_{m_p}$, there is unique morphism $h$ making following diagram commute
+\[
+\begin{tikzcd}
+&A(Y) \ar[r,"l_{m_p}"] \ar[d,"l"]& A(Y)_{m_p} \ar[ld,"h"] \\
+&K(A(Y))& \\
+\end{tikzcd}
+\]
+Now we get a new localization diagram
+\[
+\begin{tikzcd}
+& &A(Y)_{m_p} \ar[d,"l'"] \ar[dl,"h"]\\
+&K(A(Y)) & K(A(Y)_{m_p}) \ar[l,dashed,"\exists !f"]\\
+\end{tikzcd}
+\]
+Hence we can conclude that $K(A(Y)) \cong K(A(Y)_{m_p})$, which implies that $K(Y) \cong K(\mathcal{O}_{Y,p})$ for all $p \in Y$. \qeds
 \begin{exer}
 	Prove that for any integer $0 \leq i \leq n$
 	\[
