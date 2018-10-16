@@ -96,7 +96,7 @@ $Y$ is projective variety, so let $Y= Z(\mathfrak{p}) \subseteq \mathbb{P}^n$ fo
 \begin{exer}
 	A regular function on projective variety is continuous map (view $k$ as affine line $\mathbb{A}^1$).
 \end{exer}
-Let $Y \subseteq P^n$ be a projective variety, then $Y$ can be covered by affine varieties $U_i=Y \cap A^n_i$, where $A^n_i$ are canonical affine coverings of $\mathbb{P}^n$. If $f\colon Y \to k$ be a regular function, then its restrictions $f_{U_i} \colon U_i \to k$ are continuous map, and since $U_i$ are all open in $Y$, $f$ itself is continuous on $Y$. \qeds
+Let $Y \subseteq P^n$ be a projective variety, then $Y$ can be covered by affine varieties $U_i=Y \cap A^n_i$, where $A^n_i$ are canonical affine coverings of $\mathbb{P}^n$. If $f\colon Y \to k$ be a regular function, then its restrictions $f_{U_i} \colon U_i \to k$ are continuous maps, and since $U_i$ are all open in $Y$, $f$ itself is continuous on $Y$. \qeds
 \begin{exer}
 	Let $\varphi: \mathbb{A}^1 \to C \hookrightarrow \mathbb{A}^2$ be curve defined as $ t \mapsto (t^2,t^3)$. Obviously, $\varphi$ is $1-1$ correspondence. Prove $\varphi$ is not isomorphism between varieties.
 \end{exer}
@@ -111,7 +111,7 @@ If $\varphi$ is isomorphism, then $\varphi^*$ is isomorphism between coordinate 
 \[
 \frac{\alpha(x,y)}{\beta(x,y)}
 \]
-where $\alpha ,\beta$ are polynomials in $k[x,y]$ and $\beta(0,0) \neq 0, \frac{\alpha(t^2,t^3)}{\beta(t^2,t^3)} = t$. It is impossible.
+where $\alpha ,\beta$ are polynomials in $k[x,y]$ and $\beta(0,0) \neq 0, \frac{\alpha(t^2,t^3)}{\beta(t^2,t^3)} = t$. It is impossible since $\alpha(t^2,t^3) = t \beta(t^2,t^3)$ cannot have term of degree 1.
 Hence we can conclude $\varphi$ can not be an isomorphism otherwise it will induce isomorphism between coordinate ring. \\ \qeds
 \begin{exer}
 	Let $S= Z(y_0 y_2 - y_1^2)$ be the surface in $\mathbb{P}^2_k$ with the coordinates $(y_0:y_1:y_2)$. Let $\mathbb{P}^1_k$ be projective line with coordinate ring $k[x_0,x_1]$. Consider morphism \[
@@ -127,7 +127,9 @@ It is well-defined regular morphism since $(x_0^2)(x_1^2) - (x_0 x_1)^2=0$ and w
 (y_1: y_2)& \text{if } y_2 \neq 0\\
 \end{cases} 
 \]
-It is well-defined regular morphism since if $y_0$ and $y_2$ are neither equal to $0$ then $(y_0: y_1) = (\frac{y_0}{y_1}:1) = (\frac{y_1}{y_2}:1) = (y_1:y_2)$. And we have $\varphi \circ \varphi^{-1} = id_{S}, \varphi^{-1} \circ \varphi = id_{\mathbb{P}^1_k}$. \qeds
+It is well-defined since we have $(y_0: y_1) = (\frac{y_0}{y_1}:1) = (\frac{y_1}{y_2}:1) = (y_1:y_2)$ when neither $y_0$ or $y_2$ are  equal to $0$. Moreover, it is regular map because it is regular on open subsets $S \cap \{y_0 \neq 0\}$ and $S \cap \{y_2 \neq 0\}$. With the fact that $\varphi \circ \varphi^{-1} = id_{S}, \varphi^{-1} \circ \varphi = id_{\mathbb{P}^1_k}$, we can conclude that $\varphi$ is isomorphism. 
+
+\qeds
 \section{Week 4}
 \begin{exer}
 	Let $Y$ be an affine variety in $\mathbb{A}^n_k$. Show that $K(Y) \cong K(\mathcal{O}_{Y,p})$ for all $p \in Y$.
