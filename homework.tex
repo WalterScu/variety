@@ -11,9 +11,16 @@
 \usepackage{tikz-cd}
 \usepackage{geometry}
 \geometry{left=2cm,right=1cm, top=3cm,bottom=2cm}
+\usepackage{fancyhdr}
+\usepackage{fourier-orns}
+\renewcommand\headrule{\hrulefill \raisebox{-2.1pt}[10pt][10pt]{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\pagestyle{fancy}
+\lhead{邹海涛} 
+\rhead{17210180015}
 \theoremstyle{definition}
 \newtheorem{secdefn}{Definition}[subsection]
-\newtheorem{exer}{Exercies}[subsection]
+\newtheorem{exer}{Exercies}[section]
 \newcommand*{\qeds}{\hfill\ensuremath{\clubsuit}}
 \DeclareMathOperator{\spec}{Spec}
 \begin{document}
@@ -84,6 +91,7 @@ Since $Y \subseteq Z(I(Y))$ and $Z(I(Y))$ is closed, we have $\bar{Y} \subseteq 
 	If $Y$ is a projective variety with homogeneous coordinate ring $S(Y)$, show that $\dim S(Y) = \dim Y +1$.
 \end{exer}
 $Y$ is projective variety, so let $Y= Z(\mathfrak{p}) \subseteq \mathbb{P}^n$ for some prime homogeneous ideal $\mathfrak{p}$. Hence any descending chain of closed subset of $Y$ corresponds to a descending chain of radical homogeneous ideal containing $\mathfrak{p}$ with the same length. However, $S_+$ is prime homogeneous ideal of $S$ which contains any non-zero ideal of $S$ but doesn't correspond to a algebraic set. Hence the $\dim S(Y) > \dim Y$. Since radical ideals contains $\mathfrak{p}$ except $S_+$ also correspond to closed subsets of $Y$, $\dim Y  \geq \dim S(Y)-1$. Hence $\dim S(Y) = \dim Y +1$.\qeds
+\newpage
 \section{Week 3}
 \begin{exer}
 	A regular function on projective variety is continuous map (view $k$ as affine line $\mathbb{A}^1$).
@@ -120,6 +128,7 @@ It is well-defined regular morphism since $(x_0^2)(x_1^2) - (x_0 x_1)^2=0$ and w
 \end{cases} 
 \]
 It is well-defined regular morphism since if $y_0$ and $y_2$ are neither equal to $0$ then $(y_0: y_1) = (\frac{y_0}{y_1}:1) = (\frac{y_1}{y_2}:1) = (y_1:y_2)$. And we have $\varphi \circ \varphi^{-1} = id_{S}, \varphi^{-1} \circ \varphi = id_{\mathbb{P}^1_k}$. \qeds
+\section{Week 4}
 \begin{exer}
 	Let $Y$ be an affine variety in $\mathbb{A}^n_k$. Show that $K(Y) \cong K(\mathcal{O}_{Y,p})$ for all $p \in Y$.
 \end{exer}
@@ -151,7 +160,26 @@ Hence we can conclude that $K(A(Y)) \cong K(A(Y)_{m_p})$, which implies that $K(
 	K(\mathbb{P}^n_k) \cong k(x_0/x_i, \cdots, \widehat{x_i/x_i}, \cdots, x_n/x_i)
 	\]
 \end{exer}
+For any variety $Y$, if $U$ is open subvariety of $Y$, then by definition $K(Y) \cong K(U)$. More precisely, we can send $\langle f, V \rangle$ to $\langle f, V \cap U \rangle$ and it is an well-defined isomorphism between function fields. Therefore, for any $0 \leq i \leq n$, we have $K(A_i) \cong K(\mathbb{P}^n_k)$, where $A_i$ is affine cover which is isomorphic to $\mathbb{A}^n_k$ with coordinate ring $k[x_0/x_i, \cdots, \widehat{x_i/x_i}, \cdots, x_n/x_i]$. With the conclusion in last exercise, we can conclude that 
+\[
+K(\mathbb{P}^n_k) \cong K(A_i) \cong k(x_0/x_i, \cdots, \widehat{x_i/x_i},\cdots, x_n/x_i)
+\]
 \begin{exer}
 	Equation $x_0^2 + x_1^2 + x_2^2=0$ defines a conic $X \hookrightarrow \mathbb{P}_k^2$. Find $t \in K(X)$ such that $K(X) \cong k(t)$ is a transcendental extension of $k$ with degree 1.
 \end{exer}
+$K(X)$ is equal to function field of affine open subset defined by
+\begin{equation}
+\label{eq1}
+	(\frac{x_1}{x_0})^2 + (\frac{x_2}{x_0})^2 = -1
+\end{equation}
+Consider linear transform
+\begin{align}
+y_1 = \frac{x_1}{x_0} + i \frac{x_2}{x_0}& &
+y_2 = \frac{x_1}{x_0} - i \frac{x_2}{x_0}
+\end{align}
+Then the equation \ref{eq1} becomes
+\begin{equation}
+	y_1 y_2 =-1
+\end{equation}
+Hence $K(X) = k(y_1,y_2) = k(y_1)$ since $y_2 =-1/y_1$. Therefore $y_1$ is the required $t$. \qeds
 \end{document}
