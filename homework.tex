@@ -21,8 +21,17 @@
 \theoremstyle{definition}
 \newtheorem{secdefn}{Definition}[subsection]
 \newtheorem{exer}{Exercies}[section]
+\renewcommand{\qed}{\hfill\ensuremath{\clubsuit}}
 \newcommand*{\qeds}{\hfill\ensuremath{\clubsuit}}
 \DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\proj}{Proj}
+\DeclareMathOperator{\pgl}{PGL}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\p}{\mathbb{P}}
+\DeclareMathOperator{\A}{\mathbb{A}}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\ord}{ord}
 \begin{document}
 \noindent
 {\LARGE\underline{\textbf{Algebraic Geometry}}}\\
@@ -184,4 +193,240 @@ Then the equation \ref{eq1} becomes
 	y_1 y_2 =-1
 \end{equation}
 Hence $K(X) = k(y_1,y_2) = k(y_1)$ since $y_2 =-1/y_1$. Therefore $y_1$ is the required $t$. \qeds
+\newpage
+\section{Week5}
+\begin{exer}
+	Suppose $S = Z(xy-zw) \subset \mathbb{P}^3_k = \proj k[x,y,z,w]$. Let $H \subset \mathbb{P}_k^3$ the hyperplane in $\mathbb{P}_k^3$ defined by $x=0$. It is isomorphic to $\mathbb{P}_k^2$.
+	\[\begin{aligned}
+		\varphi \colon S &\dashrightarrow H \\
+		(x: y: z: w) &\mapsto (0: y: z-x: w)\\
+	\end{aligned}\]
+	Prove that $\varphi$ is birational map.
+\end{exer}
+\begin{proof}
+	Actually, we define its rational inverse as 
+\[
+\begin{aligned}
+\varphi^{-1} \colon H &\dashrightarrow S\\
+(0: s_1: s_2: s_3) & \mapsto (\frac{s_2 s_3}{s_1 -s_3}: s_1 : \frac{s_1 s_2}{s_1 - s_3}: s_3)
+\end{aligned}
+\]
+It is defined on $H$ on the open subset $\{s_1 \neq s_3\} \cap H$ and $\varphi^{-1}(H) \cap (S \cap A_i) \neq \emptyset$ for all canonical affine covers $A_i$ of $\mathbb{P}_k^3$. It means $\varphi^{-1}$ is well-defined dominant rational map on $H$. Furthermore, its compositions with $\varphi$ are all identities as rational maps since
+\[
+ \varphi((\frac{s_2 s_3}{s_1 - s_3}: s_1 : \frac{s_1 s_2}{s_1 -s_3}:s_3)) = (0: s_1: \frac{s_2(s_1-s_3)}{s_1 - s_3}: s_3) = (0: s_1: s_2 : s_3)
+\]
+and
+\[
+\begin{aligned}
+\varphi^{-1}((0:y:z-x:w)) &= (\frac{(z-x)w}{y-w}: y: \frac{y(z-x)}{y-w}: w)\\
+ &= (\frac{xy-xw}{y-w}: y: \frac{yz- zw}{y-w}: w)\\
+ & =(x:y:z:w)
+\end{aligned}
+\]
+\end{proof}
+\begin{exer}
+	If $Y, Z \subset \mathbb{A}^2_k$ are two distinct curves given by equations $f=0,  g=0$, and if $p \in Y\cap Z$, we define the intersection multiplicity $(Y\cdot Z)_p$ at point $p$ to be the length of the $\mathcal{O}_p$-module $\mathcal{O}_p/(f,g)$. Show that 
+	\begin{itemize}
+		\item $(Y\cdot Z)_p$ is finite and $(Y\cdot Z)_p \geq \mu_p(Y) \mu_p(Z)$
+		\item  If $p \in Y$ show that for almost all lines $l$ through $p$, we have $(l \cdot Y)_p = \mu_p(Y)$.
+		\item If $Y$ is a curve of degree $d$ in $ \mathbb{P}_k^2$, and if $l$ is a line in $\mathbb{P}_k^2$, $l \neq Y$, show that $(l \cdot Y) =d $. Here we define $(l \cdot Y) = \sum_p (l \cdot Y)_p$ taken over all points $p \in l \cap Y$, where  $(l\cdot Y)_p$ is defined using a suitable affine cover of $\mathbb{P}_k^2$.
+	\end{itemize}
+\end{exer}
+\begin{proof}
+	\begin{itemize}
+	\item To show $(Y \cdot Z)_p$ is finite, we just need to prove $\mathcal{O}_p$-module $\mathcal{O}_p/(f,g)$ is of finite length. This is equivalent to prove that $\mathcal{O}_p/(f,g)$ is both Artinian and Noetherian module. Since $\mathcal{O}$ is localization of Noether ring $k[x,y]$, it is also Noether. The natural morphism $\mathcal{O}_p \twoheadrightarrow \mathcal{O}_p/(f,g)$ implies that $\mathcal{O}_p/(f,g)$ is finitely generated $\mathcal{O}_p$-module, so it is Noetherian module. Furthermore, $\mathcal{O}_p/(f,g)$ is of Krull dimension $0$, because of  $\dim \mathcal{O}_p=2$ together with Krull's principal ideal theorem. Therefore $\mathcal{O}_p/(f,g)$ is Artinian ring  since $\mathcal{O}_p/(f,g)$ is Noether ring and it is also Artinian module as $\mathcal{O}_p$-module. Suppose $Y$ and $Z$ intersect at $(0,0)$.
+	\item Make a linear change of the coordinates so that $p=(0,0)$. Then $\mathcal{O}_p  = k[x,y]_{(x,y)} \cong k[x,y]$. Therefore, any line through $p$ can be defined by equation $ax+by =0$. If $b \neq 0$, then $y= -\frac{a}{b} x$. In this case, $\mathcal{O}_p/(f,ax+by) \cong k[x]/(f(x, -a/b x))$. Let $\mu_p(Y) = r$ and $f$ is of degree $d$, then $f$ can be written in the form
+	\[
+	f(x, -\frac{a}{b} x) = c_0 x^r + c_1 x^{r+1} + \cdots + c_{d-r}x^{d}= c_0 x^r(1+ \cdots + c_{d-r} x^{d-r})
+	\]
+	$1+ \cdots c_{d-r} x^{d-r}$ can be viewed as polynomial of $\frac{a}{b}$ with coefficients in $k[x]$, so there are only finite $a$ such that $1+ \cdots c_{r-d}x^{r-d} = 0$. Hence $\mathcal{O}_p/(f,ax+by) \cong k[x]/(c_0 x^r)$ since $c_0 x^r$ and $1+ \cdots c_{d-r}x^{d-r}$ are coprime except finite number of $a$. Therefore, length of $\mathcal{O}_p/(f,ax+by)=r$. If $b=0$, it determines only line in $\A^2_k$. Hence we reach the conclusion.
+	\item $Y$ is curve in $\p_k^2$, so $Y$ is determined by homogeneous polynomial $f$. Let $A_i =\{x_i\neq 0\} \cap \p^2$ be the three affine covers of $\p_k^2$. Under linear transformation, we can make $l$ through $(0:0:1)$, hence equation of $l$ can be written as
+	\[
+	ax+by =0
+	\]
+	In this case $l$ can be covered by $A_1 \cup A_3$ if $b \neq 0$. Then
+	\begin{equation}
+	\label{eq1}
+(l \cdot Y) =\sum_{p \in A_1 \cap l \cap Y} (l\cdot Y)_p + (l\cdot Y)_{(0:0:1)}
+	\end{equation}
+	
+	Suppose $Y$ is determined by homogeneous polynomial $f$. On $A_1$, the $Y\cap l$ is determined by 
+	\[
+	f(1, -\frac{b}{a}, z/x) =0
+	\]
+	Let $F(t)= f(1, -\frac{1}{b},t)$ is of degree $r$. Then the first term of right part of $\ref{eq1}$ is equal to $r$. With last exercise, we know $(l\cdot Y)_{(0:0:1)} = \mu_{(0:0:1)}(Y)=d-r$.
+	Hence, we can conclude that $(l\cdot Y) = d$
+	\end{itemize}
+\end{proof}
+
+\section{Week6}
+\begin{exer}
+	Let $Y$ be the curve $y^2= x^3-x$ in $\mathbb{A}_k^2$, and assume that the characteristic of the base field $k$ is not $2$. We can find that $Y$ is nonsingular and $A= A(Y)$ is integral closed domain. Furthermore, $k[x] \subset K=K(Y)$ is a polynomial subring and $A$ is the integral closure of $k[x]$ in $K$. There is an automorphism $\sigma:A \to A$ which sends $y$ to $-y$ and leaves $x$ fixed. We define the norm $N$ of $A$ which maps $a$ to $N(a) = a \cdot \sigma(a)$ for any $a$ in $A$. 
+	
+	Using this norm, show that the units in $A$ are precisely the non-zero elements of $k$. Show that $x$ and $y$ are irreducible elements of $A$. Show that $A$ is not a UFD.
+\end{exer}
+
+\begin{exer}
+	We know that if $X$ is a quasi-projective curve and $\varphi \colon X\backslash P \to Y$ where $P\in X$ and $Y$ is a projective variety, there is a unique morphism $\bar{\varphi} \colon X \to Y$ extending $\varphi$. But it is not true when $\dim X \geq2$.
+	
+	Let $\varphi \colon \mathbb{P}_k^2 \dashrightarrow \mathbb{P}_k^2$ be the Cremona transformation which is defined on $\mathbb{P}_k^2 -\{(1:0:0),(0:1:0),(0:0:1)\}$ and sends $(x:y:z)$ to $(yz:xz:xy)$, show that $\varphi$ can not extend to a morphism from $\p_k^2$ to $\mathbb{P}_k^2$.
+\end{exer}
+\begin{proof}
+	If $\varphi$ can be extended to a morphism $\tilde{\varphi}$ on $\p_k^2$. Consider the embedding of projective line $i_1 \colon \p_k^1 \hookrightarrow \p_k^2$ by sending $(x:y)$ to $(x:y:0)$. Then points $(1:0:0)$ and $(0:1:0)$ are in $i_1(\p_k^1)$. If $p \in \p_k^1$ is not equal to $(1:0)$ or $(0:1)$, then $\tilde{\varphi}\circ i_1(p) = (0:0:xy)=(0:0:1)$. Hence $\p_k^1 -(1:0)-(0:1) \subseteq S= (\tilde{\varphi}\circ i_1)^{-1}((0:0:1))$. It implies
+	\[
+	\p_k^1= \overline{\p_k^1-(1:0)-(0:1)} \subseteq S \subseteq \p_k^1
+	\]
+	Therefore, $S= \p_k^1$. This means $\tilde{\varphi}((1:0:0))= \tilde{\varphi}((0:1:0)) = (0:0:1)$. However, if we take another embedding $i_2$ of projective line into $\p_k^2$,sending $(x:y)$ to $(x:0:y)$, then we can get $\tilde{\varphi}((1:0:0))=\tilde{\varphi}((0:0:1)) = (0:1:0)$. So we cannot define the value of $(1:0:0)$ properly. Hence we can conclude that $\varphi$ cannot extend to a morphism on $\p_k^2$.
+\end{proof}
+\begin{exer}
+	Think $\p_k^1$ as $\A_k^1 \cup \infty$. Then we define a fractional linear transformation of $\p_k^1$ by sending $x \mapsto (ax+b)/(cx+d)$, for $a,b,c,d \in k$ and $ad-bc\neq0$
+	\begin{itemize}
+		\item Show that a fractional linear transformation induces an automorphism of $\p^1_k$ (i.e., an isomorphism of $\p_k^1$ with itself). We denote the group of all these fractional linear transformations by $\pgl(1)$.
+		\item Let $\aut(\p_k^1)$ denote the group of all automorphisms of $\p_k^1$. Show that $\aut(k(x))$, the group pf $k$-automorphisms of the fractional field $k(x)$.
+		\item Now show that every automorphism of $k(x)$ is a fractional linear transformation, and deduce that $\pgl(1) \to \aut(\p_k^1)$ is an isomorphism.
+	\end{itemize}
+\end{exer}
+\begin{proof}
+	\begin{itemize}
+		\item Let $\infty=(1:0) \in \p_k^1$. Then fractional linear transformation $x \mapsto (ax+b)/(bx+d)$ can be written in coordinates as\[
+		(x:y) \mapsto (ax+by:cx+dy)
+		\]
+		It is well-defined regular morphism since its each component is polynomial of $x,y$ and $(ax+by:cx+dy) \neq (0:0)$ since $ad-bc \neq 0$. Take the inverse matrix of
+		\[
+		\begin{pmatrix}
+		a&b\\
+		c&d\\
+		\end{pmatrix}
+		\]
+		We get the inverse of the fractional linear transformation
+		\[
+		(m:n) \mapsto (\frac{dm-bn}{ad-bc}: \frac{-cm+an}{ad-bc})
+		\]
+		Hence it is automorphism on $\p_k^1$.
+		\item First, we note that function field $K(\p_k^1) \cong K(\A_k^1) \cong k(x)$. Taking function field of variety is functional, hence automorphism of $\p_k^1$ induces automorphism of $k(x)$ and it is $k$-linear since it actually induces morphism of $k$-algebras. Conversely, any $k$-automorphism $\varphi$ of $k(x)$ is determined by the image $\varphi(x)$. Let $f= \varphi(x) \in k(x)$, then we define $\phi \colon \p_k^1 \to \p_k^1$ as follows 
+		\[
+		\phi((x:y)) = \begin{cases}
+		(f(x/y):1)& \text{ if } y \neq 0\\
+		(1:f(y/x))& \text{ if } x \neq 0\\
+		\end{cases}
+		\]
+		Or equivalently $\phi(x:y) = (f(x): f(y))$. Since $f \in k(x)$ and $\varphi$ has inverse, $\phi$ is well-defined automorphism of $\p_k^1$. Furthermore, we have $K(\phi) = \varphi$, which is induced isomorphism by $\p_k^1$-automorphism on its function field. Hence we can conclude that $\aut(\p_k^1) \cong \aut(k(x))$.
+		\item Since $f \in k(x)$, it can be written as
+		\[
+		f(x)= \frac{a_0 + a_1 x + \cdots + a_m x^m}{b_0 + b_1 x+ \cdots + b_n x^n}
+		\]
+		Let $y= f(x)$. Because $\varphi$ is isomorphism, $f(x)$ must have form
+		\[
+		f(x) = \frac{a_0 + a_1 x}{b_0 +b_1 x}
+		\]
+		Since $\varphi$ is determined by $f(x)$, there is one-to-one correspondence between $\pgl(1)$ and $\aut(k(x))$ and it is isomorphism of groups.
+	\end{itemize}
+\end{proof}
+\newpage
+\section{Week 8}
+\begin{exer}
+	\begin{itemize}
+		\item Find the degree of the $d$-uple embedding of $\mathbb{P}^n$ in $\mathbb{P}^N$ where $N = \binom{n+d}{n}-1$.
+		\item Find the degree of the Serge embedding of $\mathbb{P}^r \times \mathbb{P}^s$ in $\mathbb{P}^N$ where $N= r+s +rs$.
+	\end{itemize}
+\end{exer}
+\begin{proof}
+	The $d$-uple embedding is defined as
+	\[
+	\rho_d \colon P=(a_0 : \cdots: a_n) \mapsto (M_0(a): \cdots : M_N(a))
+	\]
+	where $M_i$ are all monomial of degree $d$ with variables $a_0, \cdots ,a_n$. Let $S(\mathbb{P}^N) = k[y_0, \cdots, y_N]$ and $S(\mathbb{P}^n)=k[x_0,\cdots,x_n]$. $\rho_d$ induce $k$-algebra homomorphism
+	\[
+	\varrho_d \colon y_i \mapsto M_i(x_0, \cdots, x_n)=x_0^{i_0} \cdots x_n^{i_n}
+	\]
+	Suppose kernel of this morphism is $\mathfrak{a}$. It is homogeneous prime ideal corresponds to image of $\rho_d$. Hence the coordinate ring of image $M$ of $\rho_d$ is $S(M)= k[y_0, \cdots, y_N]/\mathfrak{a} \cong \im \varrho_d$. It means that 
+	\[
+	S(M) = \bigoplus_{l=0}S(M)_l\cong \bigoplus_{l=0} k[x_0, \cdots, x_n]_{ld}
+	\]
+	where $S(M)_l \cong k[x_0, \cdots, x_n]_{ld}$ is $\binom{ld+n}{n}$ dimensional vector space. Hence the degree $M$ is $d^n$.
+	
+	Similarly as $d$-uple embedding, the ideal of image of Segre embedding is kernel of 
+	\[
+	 \begin{aligned}
+	 \theta \colon k[z_{00}, \cdots, z_{ij}, \cdots, z_{rs}] &\to k[x_0, \cdots, x_r; y_0, \cdots, y_s]\\
+	 &z_{ij} \mapsto x_i y_j
+	 \end{aligned}
+	\]
+	We denote its kernel by $\mathfrak{b}$, hence $S(X)\cong k[z_{00}, \cdots, z_{ij}, \cdots, z_{rs}]/\mathfrak{b} \cong \im \theta$. Hence \[
+	S(X) = \bigoplus_{j=0} S(X)_j \cong \bigoplus_{j=0} k[x_0y_0, \cdots, x_r y_s]_{j} \cong \bigoplus_{j=0} k[x_0, \cdots, x_r]_j \times k[y_0, \cdots, y_s]_j
+	\]
+	where $x_iy_j$ is of grade $1$. Hence $\dim_k S(X)_j = \binom{j+r}{j} \binom{j+s}{j}$. 
+\end{proof}
+\begin{exer}
+	Show that an algebraic set $Y$ of pure dimension $r$ (i.e., every irreducible component of $Y$ has dimension $r$) has degree $1$ if and only if $Y$ is a linear variety.
+\end{exer}
+\begin{proof}
+	If $Y$ is linear variety of codimenision $1$ in $\mathbb{P}^n$, then $Y$ is variety in $\mathbb{P}^n$ determined by single linear equation, so it is just hyperplane in $\mathbb{P}^n$. Then we assume that all linear varieties of codimension $k$ is of degree $1$. For some linear variety $Y^{k+1}$ of codimension $k+1$, it intersection of a hyperplane $H$ and a linear variety $Y^k$ of codimension $k$, so with theorem 7.7, we have 
+	\[
+	i(Y^k,H;Y^{k+1})\deg Y^{k+1} = \deg Y^k \deg H =1
+	\]
+	this means that $i(Y^k,H;Y^{k+1}) = \deg Y^{k+1
+	} =1$. Hence a linear variety is of degree $1$.
+Conversely, let $Y^1= Z(I)$ be some algebraic set in $\mathbb{P}^n$ of pure codimension $1$ and $n \geq 2$. Assume $Y = \cup_i Y_i$ it the decomposition of irreducible components of $Y$. For each $Y_i$, we can choose two distinct points $P,Q$ and a hyperplane $H$ in $\mathbb{P}^n$ which contains this two points. The theorem 7.7 implies that the degree of $Y_i$ is greater than $2$ if $Y_i$ is not contained in $H$. So if $Y_i$ is of degree $1$, then $Y_i$ is contained in a hyperplane in $\mathbb{P}^n$. Hence $Y_i$ is just this hyperplane since they are irreducible and of same dimension $n-1$. So each components of $Y^1$ is hyperplane in $\mathbb{P}^n$, hence $Y^1$ itself is irreducible hyperplane since every two hyperplane intersects with each other. If $n=1$, then $Y$ is just single point of degree $1$ or $\mathbb{P}^1$ itself, of course it is linear. Now, by induction, we can assume it is true for algebraic set of pure codimension $k$ with degree $1$ that it is linear. For a algebraic set $Y^{k+1}$ in projective space $\mathbb{P}^n$. Suppose $Y^{k+1}_i$ is one of its irreducible components. We can also choose two distinct points $P,Q$ in $Y^{k+1}_i$ and it also implies $Y^{k+1}_i$ is contained in a hyperplane $H$. Take an isomorphism $H \cong \mathbb{P}^{n-1}$, then $Y^{k+1}_i$ can be viewed as variety in $\mathbb{P}^{n-1}$ with codimension $k$ of degree $1$ ( since all mentioned embeddings are closed embeddings). Hence it is linear variety. We have already known that degree of algebraic set is sum the degrees of its irreducible components. Hence $Y^{k+1}$ is irreducible, and furthermore it is linear variety.
+\end{proof}
+\begin{exer}
+	Let $Y^r$ be a $r$-dimensional variety of degree $2$. Show that $Y$ is contained in a linear subspace $L$ of dimension $r+1$ in $\mathbb{P}^n$. Thus $Y$ is isomorphic to a quadratic hypersurface in $\mathbb{P}^{r+1}$.
+\end{exer}
+\begin{proof}
+	Choose non-singular point $x \in Y^r$. Then the union of all lines  through $x$ and some other points in $Y^r$ is an $r+1$-dimensional variety of degree $1$, denoted by $P$. Therefore, combine statement of previous exercise, we can conclude that $P$ is linear.
+	
+	Or we can choose three distinct points in $Y^r$, then we can find a hyperplane $H$ in $\mathbb{P}^n$ that contains such three points. Since $Y^r$ is of degree $2$, then $Y^r$ musted be contained in $H$. With linear transformation $H \cong \mathbb{P}^{n-1} \hookrightarrow \mathbb{P}^n$. Hence $Y^r$ is variety in $\mathbb{P}^{n-1}$ with degree $2$. Repeating this process, we can closed embed $Y^r$ in $\mathbb{P}^{r+1} \hookrightarrow \mathbb{P}^n$ with linear transformation. Therefore $Y^r$ is contained in a $r+1$-dimensional linear subspace of $\mathbb{P}^n$.
+	Hence $P$ is linear subspace of $\mathbb{P}^n$ of dimension $r+1$ which contains $Y^r$. This implies that $Y^r$ is hypersurface of some $\mathbb{P}^{r+1} \hookrightarrow \mathbb{P}^n$ with degree $2$. It is defined by polynomial of degree $2$. Therefore we can conclude that it is quadratic in $\mathbb{P}^{r+1}$. 
+\end{proof}
+\section{Week 9}
+\begin{exer}
+	Let $P=(0,0)$, $C = (x^2+y^2)^2 + 3x^2y -y^3$ and $D = (x^2+y^2)^3 -4x^2y^2$, directly calculate the intersection number $i(P, C\cap D)$.
+\end{exer}
+\begin{proof}
+	We need to compute ideal $((x^2+y^2)^2+3x^2y-y^3, (x^2+y^2)
+^3 -4x^2y^2)$ in local ring $k[x,y]_{(x,y)} \cong k[x,y]$.
+\end{proof}
+\begin{exer}
+	Suppose $\Char k \neq 2$ and let $X$ be a nonsingular projective curve of genus1, then for any effective divisor $D$ on $X$ we have $l(D) = \deg D$ and thus for $P \in X$ a point we have $l(P)=1$. There is no element in $K(X)$ has one pole exactly at $P$. Hence, $L(2P)=(1,x) \subseteq K(X)$, the bracket here is linear span with given base, where $P$ is two order point of $x \in K(X)$ and $L(3P) = (1,x,y) \subseteq K(X)$ where $P$ is three order pole of $y$.
+	\begin{itemize}
+		\item Show $L(4P)= (1,x,y,x^2)$ and $L(5P)= (1,x,y,x^2,xy)$.
+		\begin{proof}
+			For two degree terms $x^2, xy, y^2$, we have\[
+			\begin{aligned}
+			\ord_p(x^2)= 4& &\ord_p(xy) = 2+ 3 =5 & &\ord_p(y^2)= 2\times 3=6
+			\end{aligned}
+			\]
+			Hence $x^2 \in L(4P)$ and others are not.
+			It also implies $L(5P) = (1,x,y,x^2,xy)$.
+		\end{proof}
+	\item Derive the Weierstrass equation for genus $1$ curves.
+	\begin{proof}
+		For three degree terms $x^3,x^2y,xy^2,y^3$, we have \[
+		\begin{aligned}
+		\ord_P(x^3) =6 & & \ord_P(x^2y)= 7 & & \ord_P(xy^2)=8 & &\ord_P(y^3)=9
+		\end{aligned}
+		\] hence we have $(1,x,y,x^2,y^2,xy, x^3) \subseteq L(6P)$. While Riemann-Roch tells us $L(6P) \leq 6$, these generators are linear dependent. Therefore we have
+		\[
+		y^2+b_0xy + b_1 y = a_3 x^3 + a_2 x^2 + a_1 x + a_0
+		\]
+		with suitable linear transformation we can assume
+		\[
+		y^2= x^3 +a x +b
+		\]
+		This is Weierstrass equation for genus $1$ curve.
+		Since we have assume that $X$ is non-singular, 
+		\[
+		x^3+ax+b =0
+		\]
+		should has three distinct roots. Otherwise, if $x^3+ax+b = (x-\alpha)^2(x-\beta)$, then the Jacobian of $y^2-x^2-ax-b$ at point $(\alpha,0)$ vanishes. Therefore let
+		\[
+		y^2 = \prod_{i=1}^3(x-\tau_i)
+		\]
+		hence with embedding $(x,y) \mapsto (1:x:y)$, $X$ is birational to a cubic curve in $\mathbb{P}^2$ defined by
+		\[
+		zy^2= x^3+axz^2+bz^3
+		\]
+	\end{proof}
+	\end{itemize}
+\end{exer}
 \end{document}
