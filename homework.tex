@@ -383,9 +383,29 @@ Conversely, let $Y^1= Z(I)$ be some algebraic set in $\mathbb{P}^n$ of pure codi
 	Let $P=(0,0)$, $C = (x^2+y^2)^2 + 3x^2y -y^3$ and $D = (x^2+y^2)^3 -4x^2y^2$, directly calculate the intersection number $i(P, C\cap D)$.
 \end{exer}
 \begin{proof}
-	We need to compute ideal $((x^2+y^2)^2+3x^2y-y^3, (x^2+y^2)
-^3 -4x^2y^2)$ in local ring $k[x,y]_{(x,y)} \cong k[x,y]$.
+	\begin{itemize}
+		\item We need to compute ideal $((x^2+y^2)^2+3x^2y-y^3, (x^2+y^2)
+^3 -4x^2y^2)$ in local ring $k[x,y]_{(x,y)} \cong k[x,y]$. See the attached draft.
+\item Let $f= (x^2+y^2)^2 + 3x^2y -y^3$ and $g=(x^2+y^2)^3 -4x^2y^2$. Homogenizing them, we get\[
+\begin{aligned}
+&F= x^4 +2x^2y^2+y^4 + 2x^2yz -y^3z\\
+&G= x^6+3x^4y^2 +3x^2y^4 + y^6 -4x^2y^2z^2\\
+\end{aligned}
+\]
+After linear transformation $(x:y:z) \mapsto (z:x:y)$, the equation of $C$ and $D$ in $\mathbb{P}^2$ becomes
+\[
+\begin{aligned}
+&\tilde{F}= y^4 +2y^2z^2+z^4 + 2y^2zx -y^3x\\
+&\tilde{G}= y^6+3y^4z^2 +3y^2z^4 + z^6 -4y^2z^2x^2\\
+\end{aligned}
+\]
+	\end{itemize}
+Consider them as polynomial in $k[x,y][z]$. Compute their resultant with Mathematica
+\[
+\text{Res}(\tilde{F},\tilde{G},z)= 256 x^{10} y^{14} - 768 x^9 y^{15} + 224 x^{8} y^{16} + 432 x^7 y^{17} + 125 x^6 y^{18}
+\]
 \end{proof}
+Hence $i(p,C \cap D)$ is degree of $y$ in this resultant, it is equal to $14$.
 \begin{exer}
 	Suppose $\Char k \neq 2$ and let $X$ be a nonsingular projective curve of genus1, then for any effective divisor $D$ on $X$ we have $l(D) = \deg D$ and thus for $P \in X$ a point we have $l(P)=1$. There is no element in $K(X)$ has one pole exactly at $P$. Hence, $L(2P)=(1,x) \subseteq K(X)$, the bracket here is linear span with given base, where $P$ is two order point of $x \in K(X)$ and $L(3P) = (1,x,y) \subseteq K(X)$ where $P$ is three order pole of $y$.
 	\begin{itemize}
